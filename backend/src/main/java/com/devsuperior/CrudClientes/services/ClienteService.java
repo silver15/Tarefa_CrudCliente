@@ -1,6 +1,7 @@
 package com.devsuperior.CrudClientes.services;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.devsuperior.CrudClientes.dto.ClienteDTO;
 import com.devsuperior.CrudClientes.entities.Cliente;
 import com.devsuperior.CrudClientes.repositories.ClienteRepository;
+import com.devsuperior.CrudClientes.services.exceptions.EntityNotFoundException;
 
 @Service
 public class ClienteService {
@@ -22,6 +24,13 @@ public class ClienteService {
 		List<Cliente> list = repository.findAll();
 		return list.stream().map(x -> new ClienteDTO(x)).collect(Collectors.toList());
 
+	}
+	
+	@Transactional(readOnly = true)
+	public ClienteDTO findById(Long id) {
+		Optional<Cliente> obj = repository.findById(id);
+		Cliente entity = obj.orElseThrow(() -> new EntityNotFoundException("Entity not Found"));
+		return new ClienteDTO(entity);
 	}
 
 }
