@@ -24,8 +24,11 @@ public class Cliente implements Serializable {
 	private String name;
 	private String cpf;
 	private Double income;
-	private Instant birthDate;
 	private Integer children;
+	
+	@Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
+	private Instant birthDate;
+	
 
 	@Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
 	private Instant createdAt;

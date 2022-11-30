@@ -1,7 +1,7 @@
 package com.devsuperior.CrudClientes.resources;
 
 import java.net.URI;
-import java.util.List;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -23,7 +23,7 @@ import com.devsuperior.CrudClientes.dto.ClienteDTO;
 import com.devsuperior.CrudClientes.services.ClienteService;
 
 @RestController
-@RequestMapping(value = "/clientes")
+@RequestMapping(value = "/clients")
 public class ClienteResource {
 
 	@Autowired
